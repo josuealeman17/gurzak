@@ -7,6 +7,7 @@ const {
     deleteGoal,
     updateGoal
 } = require('../controllers/goalController')
+const {generateResponse} = require('../services/openAIServices')
 
 const router = express.Router()
 
@@ -14,7 +15,7 @@ router.get('/', getGoals)
 
 router.get('/:id', getGoal)
 
-router.post('/', createGoal)
+router.post('/', generateResponse)
 
 router.delete('/:id', deleteGoal)
 

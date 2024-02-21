@@ -28,15 +28,18 @@ const getGoal = async (req, res) => {
 
 //create a new goal
 
-const createGoal = async (req, res) => {
-  const { name, type, duration, levels } = req.body;
-
-  // add doc to db
+const createGoal = async ({ name, type, duration, levels }) => {
+  
   try {
-    const pyramid = await Pyramid.create({ name, type, duration, levels });
-    res.status(200).json(pyramid);
+    const pyramid = await Pyramid.create({
+      name: name,
+      type: type,
+      duration: duration,
+      levels: levels,
+    });
+    return pyramid;
   } catch (error) {
-    res.status(400).json({ error: error.message });
+    throw error;
   }
 };
 
@@ -55,35 +58,36 @@ const deleteGoal = async (req, res) => {
     return res.status(400).json({ error: "No such workout" });
   }
 
-  res.status(200).json(goal)
-
+  res.status(200).json(goal);
 };
 
 //update a goal
 
 const updateGoal = async (req, res) => {
-    const { id } = req.params
+  const { id } = req.params;
 
-    if(!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).json({error: 'No such goal'})
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ error: "No such goal" });
+  }
+
+  const goal = await Pyramid.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
     }
+  );
 
-    const goal = await Pyramid.findOneAndUpdate({_id: id}, {
-        ...req.body
-    })
+  if (!goal) {
+    return res.status(400).json({ error: "No such goal" });
+  }
 
-    if(!goal) {
-        return res.status(400).json({error: "No such goal"})
-    }
-
-    res.status(200).json(goal)
-}
-
+  res.status(200).json(goal);
+};
 
 module.exports = {
   getGoals,
   getGoal,
   createGoal,
   updateGoal,
-  deleteGoal
+  deleteGoal,
 };

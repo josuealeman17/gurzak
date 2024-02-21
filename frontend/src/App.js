@@ -1,24 +1,19 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
-import Form from "./pages/Form";
-import './index.css'
+import GoalForm from "./pages/GoalForm";
+import "./index.css";
 
 function App() {
   return (
     <div className="App">
-
-  
-      <Form />
-      <Home />
-
-      {/*       <BrowserRouter>
+      <BrowserRouter>
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/" element={<Form />} />
+            <Route path="/add-goal" element={<GoalForm />} />
           </Routes>
         </div>
-      </BrowserRouter> */}
+      </BrowserRouter>
     </div>
   );
 }
