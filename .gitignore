@@ -1,6 +1,9 @@
 # Created by https://www.toptal.com/developers/gitignore/api/windows,react,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,react,node
 
+### Variables de Entorno ###
+.env
+
 ### Node ###
 # Logs
 logs
