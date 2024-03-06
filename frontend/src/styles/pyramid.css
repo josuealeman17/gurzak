@@ -1,0 +1,39 @@
+.label {
+  cursor: pointer;
+}
+.popup-container {
+  position: absolute;
+  top: 65%; /* Ajusta la posición superior */
+  left: 25%;
+  transform: translateX(-50%);
+  z-index: 1; /* Ajusta el z-index para que esté por encima de otros elementos */
+}
+
+.popup {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.close-button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.close-button:hover {
+  background-color: #d32f2f;
+}
+
+.title {
+  color: black;
+  position: fixed;
+  top: 45%;
+  left: 27%;
+  font-size: 1.7rem;
+}

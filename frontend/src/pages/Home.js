@@ -8,8 +8,6 @@ import Navbar from "../components/Navbar";
 
 const Home = () => {
   const { goals, dispatch } = useGoalsContext();
-  console.log(goals);
-
   useEffect(() => {
     const fetchGoals = async () => {
       const response = await fetch("api/goals");
@@ -26,13 +24,16 @@ const Home = () => {
   return (
     <div className="Home">
       <Navbar />
-      <div className="add-goal">
-        <Link to="/add-goal">Agregar Meta</Link>
-      </div>
 
       <div className="goals">
         {goals &&
           goals.map((goal) => <GoalDetails key={goal._id} goal={goal} />)}
+      </div>
+
+      <div className="add-goal">
+        <Link to="/add-goal">
+          <p>Agregar Meta</p>
+        </Link>
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ const phaseSchema = new mongoose.Schema({
         required: true
     },
     duration: {
-        type: Number,
+        type: String,
         required: true
     },
     tasks: [String]
@@ -25,7 +25,7 @@ const pyramidSchema = new mongoose.Schema({
         required: true
     },
     duration: {
-        type: Number,
+        type: String,
         required: true
     },
     levels: [phaseSchema]

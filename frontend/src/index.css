@@ -1,5 +1,5 @@
 /* google font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 
 /* layout */
 :root {
@@ -12,10 +12,11 @@ body {
   font-family: "Poppins";
 }
 header {
-  background: #fff;
+  background: #1e2b35;
 }
+
 header .container {
-  max-width: 1400px;
+  max-width: 200px;
   margin: 0 auto;
   padding: 10px 20px;
   display: flex;
@@ -23,31 +24,36 @@ header .container {
   justify-content: space-between;
 }
 header a {
-  color: #333;
+  color: #49e795;
   text-decoration: none;
 }
-.pages{
+.pages {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
 }
 
 .goals {
-
+  width: 45%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .goals-details {
-  background: #fff;
+  z-index: 999;
+  background: #086c56;
+  width: 75%;
+  height: 150px;
   border-radius: 4px;
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 .goals-details h4 {
   margin: 0 0 10px 0;
   font-size: 1.2em;
-  color: var(--primary);
+  color: white;
   cursor: pointer;
 }
 
@@ -57,14 +63,13 @@ header a {
   justify-content: center;
 }
 .goals-details h5 {
-
   cursor: pointer;
 }
 
 .goals-details p {
   margin: 0;
   font-size: 0.9em;
-  color: #555;
+  color: #00f435;
 }
 .goals-details span {
   position: absolute;
@@ -75,4 +80,15 @@ header a {
   padding: 6px;
   border-radius: 50%;
   color: #333;
+}
+
+.add-goal {
+  position: fixed;
+  bottom: 20px; 
+  right: 20px; 
+  margin: 10px;
+}
+
+.add-goal p {
+  color: #49e795;
 }

@@ -1,36 +1,54 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGoalsContext } from "../hooks/useGoalsContext";
+import { useNavigate } from "react-router-dom";
 
 const GoalDetails = ({ goal }) => {
+  const { dispatch } = useGoalsContext();
 
-  const {dispatch} = useGoalsContext()
+  const navigate = useNavigate();
 
-  const [showPhases, setShowPhases] = useState(false);
-  const [selectedPhase, setSelectedPhase] = useState(null);
 
-  const toggleShowPhases = () => {
-    setShowPhases(!showPhases);
-    setSelectedPhase(null);
-  };
+  const getGoalData = async () => {
+    try {
+      const response = await fetch("api/goals/" + goal._id, {
+        method: "GET",
+      });
+      if (!response.ok) {
+        throw new Error("Error al obtener los datos");
+      }
+      const json = await response.json();
+      const formattedData = [
+        {
+          _id: json._id,
+          name: json.name,
+          type: json.type,
+          duration: json.duration,
+          levels: json.levels.map((level) => ({
+            name: level.name,
+            duration: level.duration,
+            tasks: level.tasks,
+            _id: level._id,
+          })),
+        },
+      ];
 
-  const togglePhase = (index) => {
-    if (selectedPhase === index) {
-      setSelectedPhase(null);
-    } else {
-      setSelectedPhase(index);
+      navigate(`/show-goal/${encodeURIComponent(JSON.stringify(formattedData))}`);
+
+    } catch (error) {
+      console.error(error);
     }
   };
 
   const handleClick = async () => {
-    const response = await fetch('api/goals/' + goal._id, {
-      method: 'DELETE'
-    })
-    const json = await response.json()
+    const response = await fetch("api/goals/" + goal._id, {
+      method: "DELETE",
+    });
+    const json = await response.json();
 
-    if(response.ok) {
-      dispatch({type: 'DELETE_GOAL', payload: json})
+    if (response.ok) {
+      dispatch({ type: "DELETE_GOAL", payload: json });
     }
-  }
+  };
 
   return (
     <div className="goals-details">
@@ -41,36 +59,8 @@ const GoalDetails = ({ goal }) => {
       <p>
         <strong>Tiempo estimado:</strong> {goal.duration}
       </p>
-      <button onClick={toggleShowPhases}>
-        {showPhases ? "Ocultar Piramde" : "Mostrar Piramide"}
-      </button>
-      {showPhases && (
-        <div>
-          {goal.levels
-            .slice()
-            .reverse()
-            .map((phase, index) => (
-              <div key={index} className="phase">
-                <h5 onClick={() => togglePhase(goal.levels.length - index - 1)}>
-                  {phase.name}
-                </h5>
-                {selectedPhase === goal.levels.length - index - 1 && (
-                  <div>
-                    <p>
-                      <strong>Duración:</strong> {phase.duration} meses
-                    </p>
-                    <h6>Tareas:</h6>
-                    <ul>
-                      {phase.tasks.map((task, taskIndex) => (
-                        <li key={taskIndex}>{task}</li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            ))}
-        </div>
-      )}
+      <br />
+      <button onClick={getGoalData}>Ver meta</button>
 
       <span onClick={handleClick}>delete</span>
     </div>

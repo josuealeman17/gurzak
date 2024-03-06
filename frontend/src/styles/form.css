@@ -1,0 +1,134 @@
+/**
+*  @project  Pure CSS Radio Button Tiles
+*  @author   Jamshid Elmi
+*  @created  2022-09-18 13:20:06
+*  @modified 2022-09-18 13:20:06
+*  @tutorial https://youtu.be/UShd9wHTR-o
+*/
+:root {
+  --primary-color: #0dae22;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #1e2b35;
+  overflow: hidden;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 50vh;
+  color: aliceblue;
+}
+
+.form-container button {
+  width: 100px;
+  margin-left: 10%;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+}
+
+.input-box {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.input-box input {
+  width: 400px;
+}
+
+.input-box button {
+  width: 80px;
+  margin-left: 40%;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 3rem;
+  width: 100%;
+  margin: 0.5rem;
+}
+
+.input-container input {
+  position: absolute;
+  height: 10%;
+  width: 50%;
+  margin: 0;
+  cursor: pointer;
+  z-index: 2;
+  opacity: 0;
+}
+
+.input-container .radio-tile {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 100%;
+  width: 700px;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  transition: all 300ms ease;
+  margin-left: 2rem;
+}
+
+.input-container label {
+  color: #49e795;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+
+input:checked + .radio-tile {
+  background-color: var(--primary-color);
+  box-shadow: 0 0 7px var(--primary-color);
+  animation: titilar 0.4s forwards;
+}
+
+input:active + .radio-tile {
+  background-color: var(--primary-color);
+  box-shadow: 0 0 7px var(--primary-color);
+  transform: scale(1.05);
+}
+
+input:hover + .radio-tile {
+  box-shadow: 0 0 12px var(--primary-color);
+}
+
+input:checked + .radio-tile label {
+  color: white;
+}
+
+/* animations */
+
+@keyframes titilar {
+  0% {
+    opacity: 1; /* Inicialmente visible */
+  }
+  50% {
+    opacity: 0; /* Mitad de la animación, invisible */
+  }
+  100% {
+    opacity: 1; /* Final de la animación, visible */
+  }
+}

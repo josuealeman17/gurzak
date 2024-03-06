@@ -29,7 +29,30 @@ const getGoal = async (req, res) => {
 //create a new goal
 
 const createGoal = async ({ name, type, duration, levels }) => {
+
+
+  let emptyFields = [] 
+
+  if(!name) {
+    emptyFields.push('name')
+  } 
+
+  if(!type) {
+    emptyFields.push('type')
+  }
+
+  if(!duration) {
+    emptyFields.push('duration')
+  }
+
+  if(!levels) {
+    emptyFields.push('levels')
+  }
   
+  if(emptyFields.length > 0) {
+    return res.status(400).json({error: "No podremos ayudarte si no sabemos lo que quieres. Por favo llena este campo!"})
+  }
+
   try {
     const pyramid = await Pyramid.create({
       name: name,

@@ -1,16 +1,22 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import GoalForm from "./pages/GoalForm";
+import Pyramid from "./pages/Pyramid";
+import Navbar from "./components/Navbar";
+import GoalDetails from "./components/GoalDetails";
 import "./index.css";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
+        
         <div className="pages">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/add-goal" element={<GoalForm />} />
+            <Route path="/goal/:id" element={<GoalDetails />} />
+            <Route path="/show-goal/:formattedData" element={<Pyramid />} />
           </Routes>
         </div>
       </BrowserRouter>
